@@ -20,6 +20,6 @@ for (int i = 0; i < 10; i++) {
 Console.WriteLine("DoneSet");
 
 
-database.Has
+//database.Has
 
 Console.WriteLine("DoneStore");
