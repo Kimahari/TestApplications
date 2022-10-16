@@ -17,7 +17,6 @@ Console.WriteLine("Hello, World!");
 var options = ScriptOptions.Default
              .AddImports("System")
              .AddReferences(typeof(IMapper).Assembly);
-
  
 var scriptExec = CSharpScript.Create(script, options);
 

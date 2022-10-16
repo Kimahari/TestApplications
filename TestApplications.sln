@@ -7,9 +7,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScriptingTest", "ScriptingT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestingSpans", "TestingSpans\TestingSpans.csproj", "{BB9FE71E-D9DC-4C60-8548-62843428B21C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingEFCoreContextPooling", "TestingEFCoreContextPooling\TestingEFCoreContextPooling.csproj", "{15C501CF-C69C-44A1-80D6-28EA56BAC1AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestingEFCoreContextPooling", "TestingEFCoreContextPooling\TestingEFCoreContextPooling.csproj", "{15C501CF-C69C-44A1-80D6-28EA56BAC1AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDbContextPooling", "SimpleDbContextPooling\SimpleDbContextPooling.csproj", "{12337AC4-EBDE-41DE-97DE-05CCF4618375}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleDbContextPooling", "SimpleDbContextPooling\SimpleDbContextPooling.csproj", "{12337AC4-EBDE-41DE-97DE-05CCF4618375}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Databases", "Databases", "{75898CAA-8889-42A9-9062-422EC1FD2004}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripting", "Scripting", "{299663D1-E19F-4B5B-9469-0185389FD67C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Random", "Random", "{D5B8BAD3-4F1E-4167-8189-2E3682E60010}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApplications.Redis", "TestApplications.Redis\TestApplications.Redis.csproj", "{6447C2C5-569D-4331-9A0B-511B1DF561B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILMapper", "ILMapper\ILMapper.csproj", "{FDF89618-90A7-41E7-8919-29042EB09363}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +43,24 @@ Global
 		{12337AC4-EBDE-41DE-97DE-05CCF4618375}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12337AC4-EBDE-41DE-97DE-05CCF4618375}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12337AC4-EBDE-41DE-97DE-05CCF4618375}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6447C2C5-569D-4331-9A0B-511B1DF561B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6447C2C5-569D-4331-9A0B-511B1DF561B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6447C2C5-569D-4331-9A0B-511B1DF561B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6447C2C5-569D-4331-9A0B-511B1DF561B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDF89618-90A7-41E7-8919-29042EB09363}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDF89618-90A7-41E7-8919-29042EB09363}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDF89618-90A7-41E7-8919-29042EB09363}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDF89618-90A7-41E7-8919-29042EB09363}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B8DB9566-79D5-4769-B2B0-0057BC9EA4E5} = {299663D1-E19F-4B5B-9469-0185389FD67C}
+		{BB9FE71E-D9DC-4C60-8548-62843428B21C} = {D5B8BAD3-4F1E-4167-8189-2E3682E60010}
+		{15C501CF-C69C-44A1-80D6-28EA56BAC1AA} = {75898CAA-8889-42A9-9062-422EC1FD2004}
+		{12337AC4-EBDE-41DE-97DE-05CCF4618375} = {75898CAA-8889-42A9-9062-422EC1FD2004}
+		{FDF89618-90A7-41E7-8919-29042EB09363} = {D5B8BAD3-4F1E-4167-8189-2E3682E60010}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D00640A-BF0F-458F-B5D5-2E8F193DED4A}
