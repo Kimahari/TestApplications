@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>6c948910-26ff-4318-a1ba-52b372499ea6</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <Configurations>Debug;Release;PostgreSQL</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

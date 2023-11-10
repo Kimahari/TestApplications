@@ -1,0 +1,27 @@
+{
+  "name": "testapplications",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "nx g @nx-dotnet/core:restore"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kimahari/TestApplications.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kimahari/TestApplications/issues"
+  },
+  "dependencies": {
+    "@nx-dotnet/core": "^1.22.0",
+    "nx": "16.6.0"
+  },
+  "homepage": "https://github.com/Kimahari/TestApplications#readme",
+  "devDependencies": {
+    "@nrwl/js": "16.6.0"
+  }
+}
