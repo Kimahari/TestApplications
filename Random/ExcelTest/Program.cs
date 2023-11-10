@@ -13,19 +13,19 @@ using OfficeOpenXml;
 
 namespace ExcelTest {
 
-    public class SybrinObjectAccessAnalytic {
+    public class SomeObjectAccessAnalytic {
         public string Name { get; set; }
         public int AccessedCount { get => 10; }
         public Dictionary<string, int> Analytics { get; set; } = new Dictionary<string, int>();
     }
 
-    public class SybrinObject {
+    public class SomeObject {
 
         public Func<string, Task<string>> ResolveNameCallback;
         public int Count { get; set; }
         public Dictionary<string, int> OverviewAnalytics { get; set; } = new Dictionary<string, int>();
         public int AccessedCount { get => AccessAnalytics.Count; }
-        public Dictionary<string, SybrinObjectAccessAnalytic> AccessAnalytics { get; set; } = new Dictionary<string, SybrinObjectAccessAnalytic>();
+        public Dictionary<string, SomeObjectAccessAnalytic> AccessAnalytics { get; set; } = new Dictionary<string, SomeObjectAccessAnalytic>();
     }
 
 
@@ -33,12 +33,12 @@ namespace ExcelTest {
         static void Main(string[] args) {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-            var objects = new Dictionary<string, SybrinObject>();
+            var objects = new Dictionary<string, SomeObject>();
             var appId = Guid.NewGuid().ToString();
 
-            objects["Documents"] = new SybrinObject();
-            objects["Documents"].AccessAnalytics = new Dictionary<string, SybrinObjectAccessAnalytic> {
-                [appId] = new SybrinObjectAccessAnalytic {
+            objects["Documents"] = new SomeObject();
+            objects["Documents"].AccessAnalytics = new Dictionary<string, SomeObjectAccessAnalytic> {
+                [appId] = new SomeObjectAccessAnalytic {
                     Name = "App1",
                     Analytics = new Dictionary<string, int>() {
                         {"JAN",10},
@@ -66,7 +66,7 @@ namespace ExcelTest {
             Console.WriteLine("Hello World!");
         }
 
-        public static void CreateSpreadsheetWorkbook(string filepath, Dictionary<string, SybrinObject> data) {
+        public static void CreateSpreadsheetWorkbook(string filepath, Dictionary<string, SomeObject> data) {
             // Create a spreadsheet document by supplying the filepath.
             // By default, AutoSave = true, Editable = true, and Type = xlsx.
             using SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.
@@ -220,7 +220,7 @@ namespace ExcelTest {
             return i;
         }
 
-        private static IEnumerable<string> GetColumns(SybrinObjectAccessAnalytic sybrinObjectAccess) {
+        private static IEnumerable<string> GetColumns(SomeObjectAccessAnalytic sybrinObjectAccess) {
             yield return "Name";
 
             foreach (var key in sybrinObjectAccess.Analytics.Keys) {
@@ -228,7 +228,7 @@ namespace ExcelTest {
             }
         }
 
-        private static IEnumerable<object> GetRowValues(SybrinObjectAccessAnalytic sybrinObjectAccess) {
+        private static IEnumerable<object> GetRowValues(SomeObjectAccessAnalytic sybrinObjectAccess) {
             yield return sybrinObjectAccess.Name;
 
             foreach (var value in sybrinObjectAccess.Analytics.Values) {
@@ -236,14 +236,14 @@ namespace ExcelTest {
             }
         }
 
-        private static IEnumerable<object[]> GetRows(IDictionary<string, SybrinObjectAccessAnalytic> sybrinObjectAccess) {
+        private static IEnumerable<object[]> GetRows(IDictionary<string, SomeObjectAccessAnalytic> sybrinObjectAccess) {
             foreach (var item in sybrinObjectAccess) {
                 var rowData = GetRowValues(item.Value);
                 yield return rowData.ToArray();
             }
         }
 
-        private static void ExportAccessAnalytics(ExcelPackage package, string sheetName, Dictionary<string, SybrinObjectAccessAnalytic> accessAnalytics) {
+        private static void ExportAccessAnalytics(ExcelPackage package, string sheetName, Dictionary<string, SomeObjectAccessAnalytic> accessAnalytics) {
             var cols = GetColumns(accessAnalytics.FirstOrDefault().Value).ToArray();
 
             package.Workbook.Worksheets.Add(sheetName);
