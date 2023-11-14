@@ -44,7 +44,6 @@ public class BenchMarks {
     }
 
     const char comma = ',';
-    const char newLine = '\n';
     const string dataStr = "String Data";
     const int dataInt = 69;
 

@@ -29,7 +29,7 @@ public class SomeObject {
 
 
 internal class Program {
-    static void Main(string[] args) {
+    static void Main() {
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
         var objects = new Dictionary<string, SomeObject>();
