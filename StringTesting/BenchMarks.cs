@@ -71,7 +71,7 @@ public class Benchmarks {
         span1.CopyTo(mergedArray);
         span2.CopyTo(mergedArray.AsSpan(span1.Length));
 
-        string result = new string(mergedArray, 0, length);
+        string result = new(mergedArray, 0, length);
         ArrayPool<char>.Shared.Return(mergedArray);
         return result;
     }

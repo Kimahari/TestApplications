@@ -7,12 +7,12 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace SimpleDbContextPooling.Data;
 
-class DbContextPool<TDbContext> : DisposableBase, IDbContextPool<TDbContext> where TDbContext : PoolableDbContext {
+class DbContextPool<TDbContext> : DisposableBase, IDbContextPool<TDbContext> where TDbContext : PoolAbleDbContext {
     public const int DefaultPoolSize = 1024;
 
     private readonly ConcurrentQueue<IDbContextPoolable> _pool = new();
 
-    private readonly Func<PoolableDbContext> _activator;
+    private readonly Func<PoolAbleDbContext> _activator;
 
     private int _maxSize;
     private int _count;
@@ -29,7 +29,7 @@ class DbContextPool<TDbContext> : DisposableBase, IDbContextPool<TDbContext> whe
         _activator = CreateActivator(options);
     }
 
-    private static Func<PoolableDbContext> CreateActivator(DbContextOptions options) {
+    private static Func<PoolAbleDbContext> CreateActivator(DbContextOptions options) {
         var constructors = typeof(TDbContext).GetTypeInfo().DeclaredConstructors.Where(c => !c.IsStatic && c.IsPublic).ToArray();
 
         if (constructors.Length == 1) {

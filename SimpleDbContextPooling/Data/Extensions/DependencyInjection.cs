@@ -3,7 +3,7 @@
 namespace SimpleDbContextPooling.Data;
 
 static class DependencyInjection {
-    public static IServiceCollection RegisterDbContextPooling<TContext>(this IServiceCollection services, Action<DbContextOptionsBuilder> configure) where TContext : PoolableDbContext {
+    public static IServiceCollection RegisterDbContextPooling<TContext>(this IServiceCollection services, Action<DbContextOptionsBuilder> configure) where TContext : PoolAbleDbContext {
         var config = new DbContextOptionsBuilder();
 
         services.TryAddSingleton<IDbContextPool<TContext>>(sp => {

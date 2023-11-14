@@ -50,7 +50,7 @@ void DoBulkInsertStuffs() {
 
     var dd = data as dynamic;
 
-    List<bool?> d = new(); ;
+    List<bool?> d = []; ;
 
     d.Add(null);
 

@@ -2,14 +2,13 @@
 
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ApplicationTests {
-    internal class Startup {
-        public void ConfigureServices(IServiceCollection services) {
+namespace ApplicationTests; 
+internal class Startup {
+    public void ConfigureServices(IServiceCollection services) {
 #if DEBUG
-            services.AddSingleton<IDatabaseDependency, MsSQLDatabaseDependency>();
+        services.AddSingleton<IDatabaseDependency, MsSQLDatabaseDependency>();
 #elif POSTGRESQL
-            services.AddSingleton<IDatabaseDependency, PostgreSQLDatabaseDependency>();
+        services.AddSingleton<IDatabaseDependency, PostgreSQLDatabaseDependency>();
 #endif
-        }
     }
 }

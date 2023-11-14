@@ -46,7 +46,7 @@ public class RangeExtraction {
         var current = args[0];
         var spanStart = 0;
 
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new();
 
         for (int i = 1; i < args.Length; i++) {
             var next = args[i];

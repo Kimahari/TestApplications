@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace SimpleDbContextPooling.Data;
 
-class PoolableDbContext : DbContext, IDbContextPoolable, IResettableService {
+class PoolAbleDbContext : DbContext, IDbContextPoolable, IResettableService {
     private DbContextLease _lease = DbContextLease.InactiveLease;
     private int _leaseCount;
 
-    protected PoolableDbContext() {
+    protected PoolAbleDbContext() {
     }
 
-    public PoolableDbContext(DbContextOptions options) : base(options) {
+    public PoolAbleDbContext(DbContextOptions options) : base(options) {
     }
 
     public void ClearLease() => _lease = DbContextLease.InactiveLease;
@@ -21,17 +21,22 @@ class PoolableDbContext : DbContext, IDbContextPoolable, IResettableService {
 
         var ss = typeof(DbContext);
         var @interface = ss.GetInterface(nameof(IDbContextPoolable));
-        var m = @interface.GetMethod(nameof(IDbContextPoolable.SetLease));
-        m.Invoke(this, new object[] { null });
 
+        if (@interface is null) return;
+
+        var m = @interface.GetMethod(nameof(IDbContextPoolable.SetLease));
+        m?.Invoke(this, [null]);
     }
 
     public Task SetLeaseAsync(DbContextLease lease, CancellationToken cancellationToken) {
         SetLeaseInternal(lease);
         var ss = typeof(DbContext);
         var @interface = ss.GetInterface(nameof(IDbContextPoolable));
+
+        if (@interface is null) return Task.CompletedTask;
+
         var m = @interface.GetMethod(nameof(IDbContextPoolable.SetLeaseAsync));
-        var task = m.Invoke(this, new object[] { null, cancellationToken });
+        var task = m?.Invoke(this, [null, cancellationToken]);
 
         if (task is Task task1) return task1;
 
@@ -46,8 +51,9 @@ class PoolableDbContext : DbContext, IDbContextPoolable, IResettableService {
     public void SnapshotConfiguration() {
         var ss = typeof(DbContext);
         var @interface = ss.GetInterface(nameof(IDbContextPoolable));
+        if (@interface is null) return;
         var m = @interface.GetMethod(nameof(IDbContextPoolable.SnapshotConfiguration));
-        m.Invoke(this, new object[] { });
+        m?.Invoke(this, []);
     }
 
     public override void Dispose() {
@@ -77,15 +83,15 @@ class PoolableDbContext : DbContext, IDbContextPoolable, IResettableService {
     private bool DisposeSync(bool leaseActive, bool contextShouldBeDisposed) {
         var f = typeof(DbContext).GetField("_disposed", BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic);
 
-        var _disposed = f.GetValue(this);
+        var _disposed = f?.GetValue(this);
 
-        if (leaseActive) {
-            if (contextShouldBeDisposed) {
-                f.SetValue(this, true);
-                _lease = DbContextLease.InactiveLease;
-            }
-        } else if (_disposed is bool disposed && disposed == false) {
+        if (_disposed is bool disposed && disposed == false) {
             return true;
+        }
+
+        if (leaseActive is false && contextShouldBeDisposed) {
+            f?.SetValue(this, true);
+            _lease = DbContextLease.InactiveLease;
         }
 
         return false;

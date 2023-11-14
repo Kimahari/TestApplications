@@ -15,7 +15,7 @@ foreach (IPAddress ip in host.AddressList) {
         if (subnet != null) {
             var tasks = new Task<PingReply>[254];
             for (int i = 1; i < 255; i++) {
-                using Ping ping = new Ping();
+                using Ping ping = new();
                 string address = subnet + "." + i.ToString();
                 //ping.PingCompleted += new PingCompletedEventHandler(PingCompletedCallback);
                 var replyTask = ping.SendPingAsync(address, 1000);
@@ -44,7 +44,7 @@ Console.ReadLine(); // wait for ping responses to complete
 
 static string GetMacAddress(string ipAddress) {
     string macAddress = string.Empty;
-    System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
+    System.Diagnostics.Process pProcess = new();
     pProcess.StartInfo.FileName = "arp";
     pProcess.StartInfo.Arguments = "-a " + ipAddress;
     pProcess.StartInfo.UseShellExecute = false;

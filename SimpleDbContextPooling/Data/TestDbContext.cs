@@ -1,6 +1,6 @@
 ﻿namespace SimpleDbContextPooling.Data;
 
-class TestDbContext : PoolableDbContext {
+class TestDbContext : PoolAbleDbContext {
 
     public TestDbContext(DbContextOptions options) : base(options) {
 

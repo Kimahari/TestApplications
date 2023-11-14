@@ -3,7 +3,7 @@ using System.Data;
 
 Console.WriteLine("Hello, World!");
 
-DataTable dt = new DataTable();
+DataTable dt = new();
 dt.Clear();
 dt.Columns.Add("Name");
 dt.Columns.Add("Marks", typeof(int));

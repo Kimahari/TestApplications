@@ -14,7 +14,7 @@ Console.WriteLine(ILMapper.Map<B>(new A { Id = 1, Name = "Test" }));
 Console.ReadLine();
 
 public class ILMapper {
-    public static Dictionary<(Type, Type), MethodInfo> _cache = new Dictionary<(Type, Type), MethodInfo>();
+    public static Dictionary<(Type, Type), MethodInfo> _cache = [];
     public static TDestination Map<TDestination>(object source) {
         var key = (source.GetType(), typeof(TDestination));
         var (sourceType, destinationType) = key;
@@ -23,16 +23,16 @@ public class ILMapper {
             _cache[key] = methodInfo = CreateMapperMathod(sourceType, destinationType);
         }
 
-        return (TDestination)methodInfo.Invoke(null, new[] { source });
+        return (TDestination)methodInfo.Invoke(null, [source]);
     }
 
     static MethodInfo CreateMapperMathod(Type sourceType, Type destinationType) {
-        AssemblyName aName = new AssemblyName("DynamicAssemblyExample");
+        AssemblyName aName = new("DynamicAssemblyExample");
         AssemblyBuilder ab = AssemblyBuilder.DefineDynamicAssembly(aName, AssemblyBuilderAccess.Run);
         ModuleBuilder mb = ab.DefineDynamicModule(aName.Name!);
 
         var typeBuilder = mb.DefineType("Mapper", TypeAttributes.NotPublic);
-        var mapMethod = typeBuilder.DefineMethod("Map", MethodAttributes.Public | MethodAttributes.Static, destinationType, new[] { sourceType });
+        var mapMethod = typeBuilder.DefineMethod("Map", MethodAttributes.Public | MethodAttributes.Static, destinationType, [sourceType]);
 
         var generator = mapMethod.GetILGenerator();
         generator.Emit(OpCodes.Newobj, destinationType.GetConstructor(Type.EmptyTypes));
@@ -52,7 +52,7 @@ public class ILMapper {
 
         var type = typeBuilder.CreateType();
 
-        var m = type.GetMethod("Map", BindingFlags.Static | BindingFlags.Public, new[] { sourceType });
+        var m = type.GetMethod("Map", BindingFlags.Static | BindingFlags.Public, [sourceType]);
 
         return m;
     }

@@ -1,12 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
 
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Net.Http.Headers;
 
-char[] ascii_image_chars = { '@', '&', 'm', 'Q', 't', ']', '?', '~', '"', '^', '\'', '.' };
+char[] ascii_image_chars = ['@', '&', 'm', 'Q', 't', ']', '?', '~', '"', '^', '\'', '.'];
 
 string camUrl = "http://192.168.0.19:8080";
 
@@ -23,15 +21,15 @@ var tasks = new TaskCompletionSource();
 var request = new HttpRequestMessage(HttpMethod.Get, camUrl);
 var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
 var stream = response.Content.ReadAsStream();
-var contentType = response.Content.Headers.ContentType.Parameters.ElementAt(0).Value;
-var boundary = HeaderUtilities.RemoveQuotes(contentType).Value;
-int[] cColors = { 0x000000, 0x000080, 0x008000, 0x008080, 0x800000, 0x800080, 0x808000, 0xC0C0C0, 0x808080, 0x0000FF, 0x00FF00, 0x00FFFF, 0xFF0000, 0xFF00FF, 0xFFFF00, 0xFFFFFF };
+var contentType = response.Content.Headers.ContentType!.Parameters.ElementAt(0).Value;
+var boundary = HeaderUtilities.RemoveQuotes(contentType).Value!;
+int[] cColors = [0x000000, 0x000080, 0x008000, 0x008080, 0x800000, 0x800080, 0x808000, 0xC0C0C0, 0x808080, 0x0000FF, 0x00FF00, 0x00FFFF, 0xFF0000, 0xFF00FF, 0xFFFF00, 0xFFFFFF];
 
 for (var streamReader = new MultipartReader(boundary, stream); ;) {
     //Console.Clear();
     //await Task.Delay(100);
 
-    MultipartSection nextFrame;
+    MultipartSection? nextFrame;
     Console.CursorLeft = 0;
     Console.CursorTop = 0;
 
@@ -41,16 +39,14 @@ for (var streamReader = new MultipartReader(boundary, stream); ;) {
         continue;
     }
 
-    if (nextFrame == null) break;
+    if (nextFrame is null) break;
 
     using var sss = new MemoryStream();
     try {
-        //Console.Clear();
-
         await nextFrame.Body.CopyToAsync(sss);
         using Bitmap image_bitmap = new(sss);
         ConsoleWriteImage(image_bitmap, cColors);
-    } catch (Exception ex) {
+    } catch (Exception) {
 
     }
 };
@@ -59,31 +55,32 @@ for (var streamReader = new MultipartReader(boundary, stream); ;) {
 
 await tasks.Task;
 
-Bitmap ResizeImage(Bitmap image, int width, int height) {
-    var destRect = new Rectangle(0, 0, width, height);
-    var destImage = new Bitmap(width, height);
+//Bitmap ResizeImage(Bitmap image, int width, int height) {
+//    var destinationRect = new Rectangle(0, 0, width, height);
+//    var destinationImage = new Bitmap(width, height);
 
-    destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+//    destinationImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
-    using (var graphics = Graphics.FromImage(destImage)) {
-        graphics.CompositingMode = CompositingMode.SourceCopy;
-        graphics.CompositingQuality = CompositingQuality.HighQuality;
-        graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-        graphics.SmoothingMode = SmoothingMode.HighQuality;
-        graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+//    using (var graphics = Graphics.FromImage(destinationImage)) {
+//        graphics.CompositingMode = CompositingMode.SourceCopy;
+//        graphics.CompositingQuality = CompositingQuality.HighQuality;
+//        graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+//        graphics.SmoothingMode = SmoothingMode.HighQuality;
+//        graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
-        using (var wrapMode = new ImageAttributes()) {
-            wrapMode.SetWrapMode(WrapMode.TileFlipXY);
-            graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
-        }
-    }
+//        using (var wrapMode = new ImageAttributes()) {
+//            wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+//            graphics.DrawImage(image, destinationRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+//        }
+//    }
 
-    return destImage;
-}
+//    return destinationImage;
+//}
+
 static void ConsoleWritePixel(Color cValue, int[] cColors) {
     Color[] cTable = cColors.Select(x => Color.FromArgb(x)).ToArray();
-    char[] rList = new char[] { (char)9617, (char)9618, (char)9619, (char)9608 }; // 1/4, 2/4, 3/4, 4/4
-    int[] bestHit = new int[] { 0, 0, 4, int.MaxValue }; //ForeColor, BackColor, Symbol, Score
+    char[] rList = [(char)9617, (char)9618, (char)9619, (char)9608]; // 1/4, 2/4, 3/4, 4/4
+    int[] bestHit = [0, 0, 4, int.MaxValue]; //ForeColor, BackColor, Symbol, Score
 
     for (int rChar = rList.Length; rChar > 0; rChar--) {
         for (int cFore = 0; cFore < cTable.Length; cFore++) {
@@ -109,11 +106,11 @@ static void ConsoleWritePixel(Color cValue, int[] cColors) {
     Console.Write(rList[bestHit[2] - 1]);
 }
 
-void ConsoleWriteImage(Bitmap source, int[] cColors) {
+static void ConsoleWriteImage(Bitmap source, int[] cColors) {
     int sMax = Console.WindowHeight - 2;
     decimal percent = Math.Min(decimal.Divide(sMax, source.Width), decimal.Divide(sMax, source.Height));
-    Size dSize = new Size((int)(source.Width * percent), (int)(source.Height * percent));
-    Bitmap bmpMax = new Bitmap(source, dSize.Width * 2, dSize.Height);
+    Size dSize = new((int)(source.Width * percent), (int)(source.Height * percent));
+    Bitmap bmpMax = new(source, dSize.Width * 2, dSize.Height);
     for (int i = 0; i < dSize.Height; i++) {
         for (int j = 0; j < dSize.Width; j++) {
             ConsoleWritePixel(bmpMax.GetPixel(j * 2, i), cColors);
@@ -126,7 +123,7 @@ void ConsoleWriteImage(Bitmap source, int[] cColors) {
 
 //
 
-//continuasly stream from cam url 
+//continually stream from cam url 
 
 //while (true) {
 //    using (WebClient client = new WebClient()) {

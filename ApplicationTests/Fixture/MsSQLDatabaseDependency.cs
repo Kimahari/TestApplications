@@ -3,26 +3,25 @@ using System.Threading.Tasks;
 
 using Testcontainers.MsSql;
 
-namespace ApplicationTests.Fixture {
-    sealed class MsSQLDatabaseDependency : IDatabaseDependency, IDisposable {
-        readonly TaskCompletionSource<bool> startedCompletionSource = new();
+namespace ApplicationTests.Fixture; 
+sealed class MsSQLDatabaseDependency : IDatabaseDependency, IDisposable {
+    readonly TaskCompletionSource<bool> startedCompletionSource = new();
 
-        private readonly MsSqlContainer msSqlContainer = new MsSqlBuilder().WithAutoRemove(true).Build();
+    private readonly MsSqlContainer msSqlContainer = new MsSqlBuilder().WithAutoRemove(true).Build();
 
-        public MsSQLDatabaseDependency() {
-            msSqlContainer.StartAsync().ContinueWith(ContainerStarted);
-        }
+    public MsSQLDatabaseDependency() {
+        msSqlContainer.StartAsync().ContinueWith(ContainerStarted);
+    }
 
-        private void ContainerStarted(Task task) {
-            startedCompletionSource.SetResult(true);
-        }
+    private void ContainerStarted(Task task) {
+        startedCompletionSource.SetResult(true);
+    }
 
-        public void Dispose() {
-            msSqlContainer.DisposeAsync().AsTask().Wait();
-        }
+    public void Dispose() {
+        msSqlContainer.DisposeAsync().AsTask().Wait();
+    }
 
-        public async Task Ready() {
-            await startedCompletionSource.Task;
-        }
+    public async Task Ready() {
+        await startedCompletionSource.Task;
     }
 }
