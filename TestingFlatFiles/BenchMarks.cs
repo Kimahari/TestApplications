@@ -90,7 +90,7 @@ public class BenchMarks {
         var table = this.dt;
         var row = dt!.Rows[0];
 
-        ExportRow2(table, row, sWriter!);
+        ExportRow2(table!, row, sWriter!);
 
         Thread.Sleep(100);
     }
@@ -110,7 +110,7 @@ public class BenchMarks {
         Thread.Sleep(100);
     }
 
-    private void ExportRow2(DataTable table, DataRow row, StreamWriter sWriter) {
+    private static void ExportRow2(DataTable table, DataRow row, StreamWriter sWriter) {
         var exported = false;
 
         foreach (DataColumn c in table.Columns) {
@@ -130,7 +130,7 @@ public class BenchMarks {
         sWriter.WriteLine();
     }
 
-    private void ExportRow1(DataTable table, DataRow row, StreamWriter sWriter) {
+    private static void ExportRow1(DataTable table, DataRow row, StreamWriter sWriter) {
         StringBuilder? stringBuilder = new();
 
         var exported = false;

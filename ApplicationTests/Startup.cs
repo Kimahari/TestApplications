@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ApplicationTests; 
 internal class Startup {
-    public void ConfigureServices(IServiceCollection services) {
+    public static void ConfigureServices(IServiceCollection services) {
 #if DEBUG
         services.AddSingleton<IDatabaseDependency, MsSQLDatabaseDependency>();
 #elif POSTGRESQL

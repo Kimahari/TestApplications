@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace NewtonSoftJsonConverterTest; 
 internal class Program {
-    static async Task Main(string[] args) {
+    static void Main() {
         var serializer = JsonSerializer.Create(new JsonSerializerSettings {
             Converters = new List<JsonConverter> {
                 new TestConverter()

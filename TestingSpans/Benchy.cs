@@ -6,7 +6,7 @@ public class Benchy {
 
 
     [Benchmark]
-    public (int day, int month, int year) GetDateSubstring() {
+    public static (int day, int month, int year) GetDateSubstring() {
         var dayAsString = DateAsString[..2];
         var monthAsString = DateAsString[2..4];
         var yearAsString = DateAsString[4..];
@@ -24,7 +24,7 @@ public class Benchy {
         return GetDateSpanImp(DateAsString);
     }
 
-    private (int day, int month, int year) GetDateSpanImp(ReadOnlySpan<char> dateAsString) {
+    private static (int day, int month, int year) GetDateSpanImp(ReadOnlySpan<char> dateAsString) {
 
         var dayAsString = dateAsString[..2];
         var monthAsString = dateAsString[2..4];

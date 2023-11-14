@@ -23,7 +23,7 @@ public class MatrixBenchmarks {
 
 
     [Benchmark]
-    public int[][] Multiply() {
+    public static int[][] Multiply() {
         var result = new int[matrix1.Length][];
         for (var i = 0; i < matrix1.Length; i++) {
             result[i] = new int[matrix2[0].Length];
@@ -38,7 +38,7 @@ public class MatrixBenchmarks {
     }
 
     [Benchmark]
-    public int[][] MultiplyParallel() {
+    public static int[][] MultiplyParallel() {
         var result = new int[matrix1.Length][];
         Parallel.For(0, matrix1.Length, i => {
             result[i] = new int[matrix2[0].Length];
@@ -53,7 +53,7 @@ public class MatrixBenchmarks {
     }
 
     [Benchmark]
-    public int[][] MultiplyParallelPartitioner() {
+    public static int[][] MultiplyParallelPartitioner() {
         var result = new int[matrix1.Length][];
         Parallel.ForEach(Partitioner.Create(0, matrix1.Length), range => {
             for (var i = range.Item1; i < range.Item2; i++) {

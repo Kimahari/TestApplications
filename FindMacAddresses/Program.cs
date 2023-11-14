@@ -73,15 +73,6 @@ static string GetSubnet(IPAddress ip) {
     } else if (bytes[0] == 192 && bytes[1] == 168) {
         return $"{bytes[0]}.{bytes[1]}.{bytes[2]}";
     } else {
-        return null;
+        return string.Empty;
     }
 }
-
-static void PingCompletedCallback(object sender, PingCompletedEventArgs e) {
-    if (e.Reply != null && e.Reply.Status == IPStatus.Success) {
-        Console.WriteLine($"Device found at {e.Reply.Address}");
-    }
-}
-
-[DllImport("iphlpapi.dll", ExactSpelling = true)]
-static extern int SendARP(uint DestIP, uint SrcIP, byte[] pMacAddr, ref int PhyAddrLen);

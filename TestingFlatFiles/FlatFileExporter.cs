@@ -17,7 +17,7 @@ internal class FlatFileExporter {
         }
     }
 
-    private async Task ExportRow(DataTable table, DataRow row, StreamWriter writer) {
+    private static async Task ExportRow(DataTable table, DataRow row, StreamWriter writer) {
         StringBuilder stringBuilder = new();
 
         var exported = false;
@@ -33,7 +33,7 @@ internal class FlatFileExporter {
         await writer.WriteLineAsync(stringBuilder.ToString());
     }
 
-    private async Task ExportHeader(DataTable table, StreamWriter writer) {
+    private static async Task ExportHeader(DataTable table, StreamWriter writer) {
         StringBuilder stringBuilder = new();
 
         var exported = false;

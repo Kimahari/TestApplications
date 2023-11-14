@@ -14,31 +14,7 @@ var defaultValueArrayMaps = new Dictionary<Type, object>() {
     { typeof(string), string.Empty }
 }!;
 
-
-void HandleMappingObjectValue(object data) {
-    if (data is IList<int> il) il.Add(0);
-    if (data is IList<decimal> dl) dl.Add(0);
-    if (data is IList<short> sl) sl.Add(0);
-    if (data is IList<bool> bl) bl.Add(false);
-    if (data is IList<long> ll) ll.Add(0);
-    if (data is IList<double> dbl) dbl.Add(0);
-    if (data is IList<byte[]> bal) bal.Add(Array.Empty<byte>());
-
-    (data as dynamic).Add(null);
-}
-
-
 DoBulkInsertStuffs();
-
-
-Type GetGenericTypeForNullable(Type type) {
-    if (type == typeof(string)) return type;
-    if (type == typeof(byte[])) return type;
-    
-    var nullable = typeof(Nullable<>).MakeGenericType(type);
-
-    return nullable;
-}
 
 void DoBulkInsertStuffs() {
     var t = typeof(int);

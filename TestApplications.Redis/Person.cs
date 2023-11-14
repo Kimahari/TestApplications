@@ -29,7 +29,7 @@ public class PersonRedisStore {
         b.WaitAll(metaDataTask, property1Task, property2Task, property3Task);
     }
 
-    public async Task<Person> GetPersonAsync(int id) {
+    public static async Task<Person> GetPersonAsync(int id) {
         return null;
     }
 }
