@@ -3,8 +3,6 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 
-using SharpPcap;
-
 Console.WriteLine("Hello, World!");
 
 //Function that will find all devices on the network

@@ -1,10 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Data;
 
-using BenchmarkDotNet.Running;
-
-using TestingFlatFiles;
-
 Console.WriteLine("Hello, World!");
 
 DataTable dt = new DataTable();

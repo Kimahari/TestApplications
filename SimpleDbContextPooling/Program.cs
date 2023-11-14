@@ -1,5 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-
 using SimpleDbContextPooling.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,8 +16,6 @@ using (var scope = app.Services.GetRequiredService<IServiceProvider>().CreateSco
     var dc = scope.ServiceProvider.GetRequiredService<TestDbContext>();
     await dc.Database.MigrateAsync();
 }
-
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {

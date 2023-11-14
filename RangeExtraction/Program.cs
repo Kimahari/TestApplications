@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Text;
-using System.Collections.Generic;
+
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 

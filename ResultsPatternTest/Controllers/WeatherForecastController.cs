@@ -28,11 +28,7 @@ public class WeatherForecastController : ControllerBase {
 
     [HttpGet(Name = "GetWeatherForecast")]
     public ActionResult<IEnumerable<WeatherForecast>> Get() {
-        Result<IEnumerable<WeatherForecast>> data = Enumerable.Range(1, 5).Select(index => new WeatherForecast {
-            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
+        Result<IEnumerable<WeatherForecast>> data = Enumerable.Range(1, 5).Select(index => new WeatherForecast(DateOnly.FromDateTime(DateTime.Now.AddDays(index)), Random.Shared.Next(-20, 55), Summaries[Random.Shared.Next(Summaries.Length)]))
         .ToArray();
 
         return data.ToServerResponse(this);

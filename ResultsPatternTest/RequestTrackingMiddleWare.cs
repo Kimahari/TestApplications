@@ -14,12 +14,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<RequestTrackingMiddleware>();
+builder.Services.AddScoped<RequestTrackingMiddleWare>();
 
 
 var app = builder.Build();
 
-app.UseMiddleware<RequestTrackingMiddleware>();
+app.UseMiddleware<RequestTrackingMiddleWare>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
@@ -35,7 +35,7 @@ app.MapControllers();
 
 app.Run();
 
-public sealed class RequestTrackingMiddleware(ILoggerFactory loggerFactory) : IMiddleware {
+public sealed class RequestTrackingMiddleWare(ILoggerFactory loggerFactory) : IMiddleware {
     private readonly ILogger logger = loggerFactory.CreateLogger(Assembly.GetExecutingAssembly().GetName().Name!);
 
     public async Task InvokeAsync(HttpContext context, RequestDelegate next) {
