@@ -65,9 +65,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatrixMult", "MatrixMult\Ma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelTest", "Random\ExcelTest\ExcelTest.csproj", "{63924327-1371-4556-9775-53CE5963A4C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResultsPatternTest", "ResultsPatternTest\ResultsPatternTest.csproj", "{16813429-5CEC-46F4-B423-2CA9C11FB614}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResultsPatternTest", "ResultsPatternTest\ResultsPatternTest.csproj", "{16813429-5CEC-46F4-B423-2CA9C11FB614}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResultsPatternTest.NBomber", "ResultsPatternTest.NBomber\ResultsPatternTest.NBomber.csproj", "{C8045C07-AF36-47E9-9138-07142BBCC451}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResultsPatternTest.NBomber", "ResultsPatternTest.NBomber\ResultsPatternTest.NBomber.csproj", "{C8045C07-AF36-47E9-9138-07142BBCC451}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WagnerFischer", "Random\WagnerFischer\WagnerFischer.csproj", "{1EDA7B20-90F9-4D00-85D5-88B05D71F2FD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RangeExtraction.Tests", "RangeExtraction.Tests\RangeExtraction.Tests.csproj", "{4F147C71-70D4-4A65-B5AA-86FAAA1AFCEE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleDbEncryptionRepositoryLayer", "SimpleDbEncryptionRepositoryLayer\SimpleDbEncryptionRepositoryLayer.csproj", "{C0CEB869-4D96-4DF5-AE0E-6282D0D9E4D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SourceGenerators", "SourceGenerators", "{B2CA367A-F6CE-4F23-8467-3B57D29EC506}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncryptionHelpersGenerators", "SourceGenerators\EncryptionHelpersGenerators\EncryptionHelpersGenerators.csproj", "{D0FD8ACE-2248-408D-A8C6-87BC34D5BDA8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -214,6 +224,30 @@ Global
 		{C8045C07-AF36-47E9-9138-07142BBCC451}.PostgreSQL|Any CPU.Build.0 = Debug|Any CPU
 		{C8045C07-AF36-47E9-9138-07142BBCC451}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8045C07-AF36-47E9-9138-07142BBCC451}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EDA7B20-90F9-4D00-85D5-88B05D71F2FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EDA7B20-90F9-4D00-85D5-88B05D71F2FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EDA7B20-90F9-4D00-85D5-88B05D71F2FD}.PostgreSQL|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EDA7B20-90F9-4D00-85D5-88B05D71F2FD}.PostgreSQL|Any CPU.Build.0 = Debug|Any CPU
+		{1EDA7B20-90F9-4D00-85D5-88B05D71F2FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EDA7B20-90F9-4D00-85D5-88B05D71F2FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F147C71-70D4-4A65-B5AA-86FAAA1AFCEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F147C71-70D4-4A65-B5AA-86FAAA1AFCEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F147C71-70D4-4A65-B5AA-86FAAA1AFCEE}.PostgreSQL|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F147C71-70D4-4A65-B5AA-86FAAA1AFCEE}.PostgreSQL|Any CPU.Build.0 = Debug|Any CPU
+		{4F147C71-70D4-4A65-B5AA-86FAAA1AFCEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F147C71-70D4-4A65-B5AA-86FAAA1AFCEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0CEB869-4D96-4DF5-AE0E-6282D0D9E4D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0CEB869-4D96-4DF5-AE0E-6282D0D9E4D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0CEB869-4D96-4DF5-AE0E-6282D0D9E4D4}.PostgreSQL|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0CEB869-4D96-4DF5-AE0E-6282D0D9E4D4}.PostgreSQL|Any CPU.Build.0 = Debug|Any CPU
+		{C0CEB869-4D96-4DF5-AE0E-6282D0D9E4D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0CEB869-4D96-4DF5-AE0E-6282D0D9E4D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0FD8ACE-2248-408D-A8C6-87BC34D5BDA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0FD8ACE-2248-408D-A8C6-87BC34D5BDA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0FD8ACE-2248-408D-A8C6-87BC34D5BDA8}.PostgreSQL|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0FD8ACE-2248-408D-A8C6-87BC34D5BDA8}.PostgreSQL|Any CPU.Build.0 = Debug|Any CPU
+		{D0FD8ACE-2248-408D-A8C6-87BC34D5BDA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0FD8ACE-2248-408D-A8C6-87BC34D5BDA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -241,6 +275,10 @@ Global
 		{63924327-1371-4556-9775-53CE5963A4C9} = {D5B8BAD3-4F1E-4167-8189-2E3682E60010}
 		{16813429-5CEC-46F4-B423-2CA9C11FB614} = {D5B8BAD3-4F1E-4167-8189-2E3682E60010}
 		{C8045C07-AF36-47E9-9138-07142BBCC451} = {D5B8BAD3-4F1E-4167-8189-2E3682E60010}
+		{1EDA7B20-90F9-4D00-85D5-88B05D71F2FD} = {D5B8BAD3-4F1E-4167-8189-2E3682E60010}
+		{4F147C71-70D4-4A65-B5AA-86FAAA1AFCEE} = {7E70268A-4642-4B08-A9AF-F8C5697CB719}
+		{C0CEB869-4D96-4DF5-AE0E-6282D0D9E4D4} = {75898CAA-8889-42A9-9062-422EC1FD2004}
+		{D0FD8ACE-2248-408D-A8C6-87BC34D5BDA8} = {B2CA367A-F6CE-4F23-8467-3B57D29EC506}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D00640A-BF0F-458F-B5D5-2E8F193DED4A}

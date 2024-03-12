@@ -1,4 +1,7 @@
-﻿namespace SimpleDbContextPooling.Data;
+﻿using SimpleDbContextPooling.Data.Internal;
+using SimpleDbContextPooling.Data.Models;
+
+namespace SimpleDbContextPooling.Data;
 
 class TestDbContext : PoolAbleDbContext {
 

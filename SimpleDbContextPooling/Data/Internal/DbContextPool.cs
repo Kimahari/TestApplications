@@ -5,7 +5,9 @@ using System.Reflection;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace SimpleDbContextPooling.Data;
+using SimpleDbContextPooling.Data.Interfaces;
+
+namespace SimpleDbContextPooling.Data.Internal;
 
 class DbContextPool<TDbContext> : DisposableBase, IDbContextPool<TDbContext> where TDbContext : PoolAbleDbContext {
     public const int DefaultPoolSize = 1024;

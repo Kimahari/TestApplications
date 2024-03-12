@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace SimpleDbContextPooling.Data;
+using SimpleDbContextPooling.Data.Internal;
+
+namespace SimpleDbContextPooling.Data.Interfaces;
 
 interface IDbContextPoolable : IResettableService, IDisposable, IAsyncDisposable {
 

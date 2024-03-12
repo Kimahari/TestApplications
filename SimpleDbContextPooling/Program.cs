@@ -1,4 +1,5 @@
 using SimpleDbContextPooling.Data;
+using SimpleDbContextPooling.Data.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,6 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace SimpleDbContextPooling.Data;
+using SimpleDbContextPooling.Data.Interfaces;
+using SimpleDbContextPooling.Data.Internal;
+
+namespace SimpleDbContextPooling.Data.Extensions;
 
 static class DependencyInjection {
     public static IServiceCollection RegisterDbContextPooling<TContext>(this IServiceCollection services, Action<DbContextOptionsBuilder> configure) where TContext : PoolAbleDbContext {

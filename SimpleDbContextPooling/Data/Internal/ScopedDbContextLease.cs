@@ -1,8 +1,10 @@
-﻿namespace SimpleDbContextPooling.Data;
+﻿using SimpleDbContextPooling.Data.Interfaces;
+
+namespace SimpleDbContextPooling.Data.Internal;
 
 sealed class ScopedDbContextLease<TContext> : IScopedDbContextLease<TContext>, IDisposable, IAsyncDisposable
    where TContext : DbContext {
-   private DbContextLease _lease;
+    private DbContextLease _lease;
 
     public ScopedDbContextLease(IDbContextPool<TContext> contextPool) {
         _lease = new DbContextLease(contextPool, standalone: false);

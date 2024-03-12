@@ -1,4 +1,4 @@
-﻿namespace SimpleDbContextPooling.Data;
+﻿namespace SimpleDbContextPooling.Data.Interfaces;
 
 interface IDbContextPool {
     IDbContextPoolable Rent();

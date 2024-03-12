@@ -1,6 +1,8 @@
-﻿using Xunit;
+﻿using PasswordEncoding;
 
-namespace PasswordEncoding.Tests; 
+using Xunit;
+
+namespace PasswordEncodingTests;
 public class Class1Tests {
     [Fact]
     public void UrlEncodeConnectionString_WithEncodedPassword_Success() {

@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace SimpleDbContextPooling.Data;
+using SimpleDbContextPooling.Data.Interfaces;
+
+namespace SimpleDbContextPooling.Data.Internal;
 
 struct DbContextLease {
     private IDbContextPool? _contextPool;

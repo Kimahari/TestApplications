@@ -2,7 +2,9 @@
 
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace SimpleDbContextPooling.Data;
+using SimpleDbContextPooling.Data.Interfaces;
+
+namespace SimpleDbContextPooling.Data.Internal;
 
 class PoolAbleDbContext : DbContext, IDbContextPoolable, IResettableService {
     private DbContextLease _lease = DbContextLease.InactiveLease;
@@ -65,7 +67,7 @@ class PoolAbleDbContext : DbContext, IDbContextPoolable, IResettableService {
         }
 
         lease.ContextDisposed();
-        this.Database.CloseConnection();
+        Database.CloseConnection();
     }
 
     public override async ValueTask DisposeAsync() {
@@ -77,7 +79,7 @@ class PoolAbleDbContext : DbContext, IDbContextPoolable, IResettableService {
         }
 
         await lease.ContextDisposedAsync();
-        await this.Database.CloseConnectionAsync();
+        await Database.CloseConnectionAsync();
     }
 
     private bool DisposeSync(bool leaseActive, bool contextShouldBeDisposed) {
