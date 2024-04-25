@@ -224,8 +224,8 @@ public class HelloSourceGenerator : IIncrementalGenerator {
                 
                             namespace {{symbol.ContainingNamespace.ToDisplayString()}} {
                                 public partial class {{className}} : {{symbol.Name}} {
-                                    public {{property.Type}} {{property.Identifier}} {
-                                        get => Internal.{{property.Identifier}};
+                                    public {{property.Type}} {{property.Name}} {
+                                        get => Internal.{{property.Name}};
                                     }
                                 }
                             }
@@ -243,15 +243,15 @@ public class HelloSourceGenerator : IIncrementalGenerator {
                     implementationName = implementationName.Slice(startIndex + 1);
                 }
 
-                var namespaceForProperty = compilation.GetSemanticModel(property.SyntaxTree).GetDeclaredSymbol(property.Type).ContainingNamespace;
+                var namespaceForProperty = property.Type.ContainingNamespace.ToDisplayString();
                 
                 var piiAwareWrapper = $"PIIAware{implementationName.ToString()}";
 
                 text += $$"""
                         namespace {{symbol.ContainingNamespace.ToDisplayString()}} {
                             public partial class {{className}} : {{symbol.Name}} {
-                                public /*{{namespaceForProperty}}*/ {{property.Type}} {{property.Identifier}} {
-                                    get => new {{piiAwareWrapper}}(Internal.{{property.Identifier}});
+                                public /*{{namespaceForProperty}}*/ {{property.Type}} {{property.Name}} {
+                                    get => new {{piiAwareWrapper}}(Internal.{{property.Name}});
                                 }
                             }
                         }
